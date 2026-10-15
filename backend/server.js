@@ -3,10 +3,12 @@ const app = express();
 const db = require('./config/db');
 const bodyParser = require('body-parser');
 const recipeRoutes = require('./routes/recipe')
+const cors = require('cors');
 
 app.listen(process.env.PORT, () => {
     console.log('server listening to port 3000');
 })
+app.use(cors());
 
 app.use(bodyParser.json());
 

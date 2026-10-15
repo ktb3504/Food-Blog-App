@@ -6,9 +6,24 @@ import MainNavigation from './components/MainNavigaton'
 import axios from 'axios';
 
 
+const getRecipes  = async () => {
+  let allRecipes = [];
+  try{
+  await axios.get("http://localhost:3000/recipe/").then( res => {
+    console.log(res.data);
+    allRecipes = res.data;
+  }
+)
+  }
+  catch(err){
+    console.log(err);
+  }
+  return allRecipes;
+}
+
 const router = createBrowserRouter([
   {path : '/' ,element : <MainNavigation></MainNavigation>, children : [
-      {path : '/', element : <Home />}
+      {path : '/', element : <Home />, loader : getRecipes}
   ]}
 ])
 
